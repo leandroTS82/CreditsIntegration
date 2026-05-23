@@ -20,6 +20,7 @@ public sealed record IntegrateCreditRequest
     public required string CreditType { get; init; }
 
     [JsonPropertyName("simplesNacional")]
+    [JsonConverter(typeof(SimpleNationalRequestConverter))] // The documentation specifies "Sim" or "Não", so we use a custom converter to handle this.
     public required bool IsSimpleNational { get; init; }
 
     [JsonPropertyName("aliquota")]
