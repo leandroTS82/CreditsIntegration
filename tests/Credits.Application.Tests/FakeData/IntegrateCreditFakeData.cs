@@ -21,6 +21,12 @@ public class IntegrateCreditFakeData
             CalculationBase = 30015.00m
         };
     }
+    internal static IntegrateCreditsCommand CreateIntegrateCreditDuplicatedRequest()
+    {
+        var credit = CreateIntegrateCreditRequest();
+        return new IntegrateCreditsCommand([credit, credit]);
+    }
+
     public static IntegrateCreditsCommand CommandWith(Func<IntegrateCreditRequest, IntegrateCreditRequest> modify)
         => new([modify(CreateIntegrateCreditRequest())]);
     public static IEnumerable<object[]> InvalidCommands =>
