@@ -8,19 +8,32 @@ services:
       - "5000:8080"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ServiceBus__ConnectionString=Endpoint=sb://localhost;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;
+      - ServiceBus__ConnectionString=Endpoint=sb://servicebus-emulator;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=credits;Username=postgres;Password=postgres
     depends_on:
-      - azurite
+      - servicebus-emulator
       - postgres
 
-  azurite:
-    image: mcr.microsoft.com/azure-storage/azurite:latest
+  servicebus-emulator:
+    image: mcr.microsoft.com/azure-messaging/servicebus-emulator:latest
     ports:
-      - "10000:10000"
-      - "10001:10001"
-      - "10002:10002"
-    command: azurite --loose --skipApiVersionCheck
+      - "5672:5672"
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Passw0rd!Strong
+      - SQL_SERVER=sqledge
+    volumes:
+      - ./config:/ServiceBus_Emulator/ConfigFiles:ro
+    depends_on:
+      - sqledge
+
+  sqledge:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Passw0rd!Strong
+    volumes:
+      - sqledge_data:/var/opt/mssql
 
   postgres:
     image: postgres:16-alpine
@@ -35,3 +48,4 @@ services:
 
 volumes:
   postgres_data:
+  sqledge_data:

@@ -5,12 +5,15 @@ using Credits.Application.Messaging.Messages;
 using Credits.Application.Messaging.Settings;
 using Credits.Application.Validators;
 using FluentValidation;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace Credits.Application.Services;
 
 public class IntegrateCreditService(IValidator<IntegrateCreditsCommand> validator, 
-    IServiceBusPublisher publisher, IOptions<ServiceBusSettings> settings) : IIntegrateCreditService
+    IServiceBusPublisher publisher, 
+    IOptions<ServiceBusSettings> settings,
+    ILogger<IntegrateCreditService> logger) : IIntegrateCreditService
 {
     private readonly ServiceBusSettings _settings = settings.Value;
     public async Task IntegrateAsync(IntegrateCreditsCommand command, CancellationToken ct)
@@ -34,6 +37,11 @@ public class IntegrateCreditService(IValidator<IntegrateCreditsCommand> validato
             );
 
             await publisher.PublishAsync(_settings.Topics.IntegrateCreditConstituted, message, ct);
+
+            logger.LogInformation(
+                "Message published for credit {CreditNumber} to topic {Topic}",
+                credit.CreditNumber,
+                _settings.Topics.IntegrateCreditConstituted);
         }
     }
     

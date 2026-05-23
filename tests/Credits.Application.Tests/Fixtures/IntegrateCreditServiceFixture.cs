@@ -2,10 +2,12 @@
 using Credits.Application.Messaging.Settings;
 using Credits.Application.Services;
 using Credits.Application.Validators;
+using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Moq;
 
 namespace Credits.Application.Tests.Fixtures;
+
 
 public sealed class IntegrateCreditServiceFixture
 {
@@ -23,5 +25,6 @@ public sealed class IntegrateCreditServiceFixture
     public IntegrateCreditService CreateService() => new(
         new IntegrateCreditCommandValidator(),
         PublisherMock.Object,
-        Options.Create(Settings));
+        Options.Create(Settings),
+        NullLogger<IntegrateCreditService>.Instance);
 }
