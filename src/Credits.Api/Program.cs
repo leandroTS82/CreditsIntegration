@@ -39,7 +39,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
         }
     });
 
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure();
 
 var app = builder.Build();
