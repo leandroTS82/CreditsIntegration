@@ -1,0 +1,20 @@
+## .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+.vscode/
+*.db
+*.db-shm
+*.db-wal
+
+## NuGet
+*.nupkg
+packages/
+project.lock.json
+artifacts/
+
+## Secrets
+appsettings.*.json
+!appsettings.Development.json
