@@ -25,6 +25,7 @@ public sealed class IngestCreditServiceTests
     [Fact]
     public async Task Should_Skip_When_Credit_Already_Exists()
     {
+        // indepotence test: ingesting the same credit twice should not create duplicates in the database
         _repositoryMock
             .Setup(r => r.ExistsByCreditNumberAsync(ValidCommand.CreditNumber, It.IsAny<CancellationToken>()))
             .ReturnsAsync(true);

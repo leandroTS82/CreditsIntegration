@@ -64,3 +64,5 @@ app.MapHealthChecks("/ready");
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
