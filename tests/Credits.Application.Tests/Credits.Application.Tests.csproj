@@ -18,6 +18,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\src\Credits.Api\Credits.Api.csproj" />
 		<ProjectReference Include="..\..\src\Credits.Application\Credits.Application.csproj" />
 	</ItemGroup>
 
