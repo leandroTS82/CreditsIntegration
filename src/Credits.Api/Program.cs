@@ -40,7 +40,7 @@ builder.Services.AddOptions<SwaggerGenOptions>()
     });
 
 builder.Services.AddApplication(builder.Configuration);
-builder.Services.AddInfrastructure();
+builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 

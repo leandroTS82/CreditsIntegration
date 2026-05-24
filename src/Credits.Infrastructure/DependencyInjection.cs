@@ -1,7 +1,12 @@
 using Azure.Messaging.ServiceBus;
 using Credits.Application.Messaging.Abstractions;
 using Credits.Application.Messaging.Settings;
+using Credits.Domain.Repositories;
 using Credits.Infrastructure.Messaging;
+using Credits.Infrastructure.Persistence;
+using Credits.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -9,7 +14,7 @@ namespace Credits.Infrastructure;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<ServiceBusClient>(sp =>
         {
@@ -18,6 +23,11 @@ public static class DependencyInjection
         });
 
         services.AddSingleton<IServiceBusPublisher, ServiceBusPublisher>();
+
+        services.AddDbContext<AppDbContext>(options =>
+        options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+        services.AddScoped<ICreditRepository, CreditRepository>();
 
         return services;
     }

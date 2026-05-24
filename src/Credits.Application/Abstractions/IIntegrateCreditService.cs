@@ -1,6 +1,6 @@
 ﻿using Credits.Application.Commands;
 
-namespace Credits.Application.Interfaces;
+namespace Credits.Application.Abstractions;
 
 public interface IIntegrateCreditService
 {

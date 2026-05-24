@@ -3,7 +3,7 @@ using FluentValidation;
 
 namespace Credits.Api.Middlewares;
 
-public sealed class ExceptionHandlingMiddleware(RequestDelegate next)
+public sealed class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<ExceptionHandlingMiddleware> logger)
 {
     public async Task InvokeAsync(HttpContext context)
     {
@@ -27,8 +27,12 @@ public sealed class ExceptionHandlingMiddleware(RequestDelegate next)
             context.Response.ContentType = "application/json";
             await context.Response.WriteAsJsonAsync(new { success = false, message = ex.Message });
         }
-        catch (Exception)
+        catch (Exception ex)
         {
+            logger.LogError(ex, "Unhandled exception for {Method} {Path}",
+               context.Request.Method,
+               context.Request.Path);
+
             context.Response.StatusCode = StatusCodes.Status500InternalServerError;
             context.Response.ContentType = "application/json";
 

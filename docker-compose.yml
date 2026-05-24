@@ -9,6 +9,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ServiceBus__ConnectionString=Endpoint=sb://servicebus-emulator;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;
+      - ServiceBus__Subscription=credits-subscription
       - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=credits;Username=postgres;Password=postgres
     depends_on:
       - servicebus-emulator
@@ -45,6 +46,22 @@ services:
       POSTGRES_PASSWORD: postgres
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  worker:
+    build:
+      context: .
+      dockerfile: src/Credits.Worker/Dockerfile
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ServiceBus__ConnectionString=Endpoint=sb://servicebus-emulator;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=SAS_KEY_VALUE;UseDevelopmentEmulator=true;
+      - ServiceBus__Subscription=credits-subscription
+      - ServiceBus__Topics__IntegrateCreditConstituted=integrar-credito-constituido-entry
+      - ServiceBus__Consumer__PollingIntervalMs=500
+      - ServiceBus__Consumer__MaxWaitTimeMs=100
+      - ConnectionStrings__DefaultConnection=Host=postgres;Port=5432;Database=credits;Username=postgres;Password=postgres
+    depends_on:
+      - servicebus-emulator
+      - postgres
 
 volumes:
   postgres_data:

@@ -1,4 +1,4 @@
-using Credits.Application.Interfaces;
+using Credits.Application.Abstractions;
 using Credits.Application.Messaging.Settings;
 using Credits.Application.Services;
 using Credits.Application.Validators;
@@ -18,6 +18,8 @@ public static class DependencyInjection
         .ValidateOnStart();
 
         services.AddScoped<IIntegrateCreditService, IntegrateCreditService>();
+        services.AddScoped<IQueryCreditService, QueryCreditService>();
+        services.AddScoped<IIngestCreditService, IngestCreditService>();
 
         services.AddValidatorsFromAssemblyContaining<IntegrateCreditCommandValidator>();
         return services;
