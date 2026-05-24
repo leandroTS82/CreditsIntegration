@@ -1,4 +1,5 @@
-﻿using Credits.Application.Services;
+﻿using Credits.Application.Messaging.Abstractions;
+using Credits.Application.Services;
 using Credits.Domain.Entities;
 using Credits.Domain.Repositories;
 using Moq;
@@ -8,12 +9,13 @@ namespace Credits.Application.Tests.Services;
 public sealed class QueryCreditServiceTests
 {
     private readonly Mock<ICreditRepository> _repositoryMock = new();
+    private readonly Mock<INotificationPublisher> _notifierMock = new();
     private readonly QueryCreditService _service;
     private readonly string _nfseNumber = "789456";
 
     public QueryCreditServiceTests()
     {
-        _service = new QueryCreditService(_repositoryMock.Object);
+        _service = new QueryCreditService(_repositoryMock.Object, _notifierMock.Object);
     }
 
     Credit MakeCredit(string creditNumber = "123456", string nfseNumber = "789456", bool simpleNational = true) =>

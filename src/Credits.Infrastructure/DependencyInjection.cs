@@ -3,6 +3,7 @@ using Credits.Application.Messaging.Abstractions;
 using Credits.Application.Messaging.Notifications;
 using Credits.Application.Messaging.Settings;
 using Credits.Domain.Repositories;
+using Credits.Infrastructure.HealthChecks;
 using Credits.Infrastructure.Messaging;
 using Credits.Infrastructure.Persistence;
 using Credits.Infrastructure.Repositories;
@@ -30,6 +31,15 @@ public static class DependencyInjection
 
         services.AddScoped<ICreditRepository, CreditRepository>();
         services.AddScoped<INotificationPublisher, NotificationPublisher>();
+
+        services.AddScoped<ServiceBusHealthCheck>();
+
+        services.AddHealthChecks()
+        .AddNpgSql(
+            configuration.GetConnectionString("DefaultConnection")!,
+            name: "postgres",
+            tags: ["ready"])
+        .AddCheck<ServiceBusHealthCheck>("servicebus", tags: ["ready"]);
 
         return services;
     }

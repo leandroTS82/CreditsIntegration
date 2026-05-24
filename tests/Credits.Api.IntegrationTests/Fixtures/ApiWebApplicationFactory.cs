@@ -1,10 +1,13 @@
-﻿using Credits.Application.Messaging.Abstractions;
+﻿using Credits.Api.IntegrationTests.Fakes;
+using Credits.Application.Messaging.Abstractions;
 using Credits.Infrastructure.Persistence;
+using HealthChecks.NpgSql;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Moq;
 using Testcontainers.PostgreSql;
 
@@ -53,6 +56,30 @@ public sealed class ApiWebApplicationFactory
                 services.Remove(publisherDescriptor);
 
             services.AddSingleton(ServiceBusPublisher);
+
+            services.Configure<HealthCheckServiceOptions>(options =>
+            {
+                options.Registrations.Clear();
+
+                options.Registrations.Add(new HealthCheckRegistration(
+                    "self",
+                    _ => new AlwaysHealthyHealthCheck(),
+                    failureStatus: null,
+                    tags: ["live"]));
+
+                options.Registrations.Add(new HealthCheckRegistration(
+                    "postgres",
+                    _ => new NpgSqlHealthCheck(
+                        new NpgSqlHealthCheckOptions(_postgres.GetConnectionString())),
+                    failureStatus: null,
+                    tags: ["ready"]));
+
+                options.Registrations.Add(new HealthCheckRegistration(
+                    "servicebus",
+                    _ => new AlwaysHealthyHealthCheck(),
+                    failureStatus: null,
+                    tags: ["ready"]));
+            });
         });
 
         builder.UseEnvironment("Test");
