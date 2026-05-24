@@ -1,4 +1,4 @@
-﻿namespace Credits.Application.Messaging.Abstractions;
+﻿namespace Credits.Domain.Messaging.Abstractions;
 
 public interface IServiceBusPublisher
 {

@@ -1,4 +1,4 @@
-﻿namespace Credits.Application.Messaging.Messages;
+﻿namespace Credits.Domain.Messaging.Messages;
 
 public sealed record IntegrateCreditMessage(
     string CreditNumber,

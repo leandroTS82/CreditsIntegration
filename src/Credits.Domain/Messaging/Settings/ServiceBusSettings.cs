@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Credits.Application.Messaging.Settings;
+namespace Credits.Domain.Messaging.Settings;
 
 public sealed class ServiceBusSettings
 {

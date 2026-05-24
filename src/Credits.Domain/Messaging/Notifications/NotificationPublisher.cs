@@ -1,9 +1,9 @@
-﻿using Credits.Application.Messaging.Abstractions;
-using Credits.Application.Messaging.Settings;
+﻿using Credits.Domain.Messaging.Abstractions;
+using Credits.Domain.Messaging.Settings;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace Credits.Application.Messaging.Notifications;
+namespace Credits.Domain.Messaging.Notifications;
 
 public sealed class NotificationPublisher(
     IServiceBusPublisher publisher,

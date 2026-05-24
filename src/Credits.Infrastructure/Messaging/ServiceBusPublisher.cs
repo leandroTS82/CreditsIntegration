@@ -1,5 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Credits.Application.Messaging.Abstractions;
+using Credits.Domain.Messaging.Abstractions;
 using System.Text.Json;
 
 namespace Credits.Infrastructure.Messaging;

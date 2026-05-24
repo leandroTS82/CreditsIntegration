@@ -1,4 +1,4 @@
-﻿using Credits.Application.Messaging.Abstractions;
+﻿using Credits.Domain.Messaging.Abstractions;
 using Credits.Application.Services;
 using Credits.Domain.Entities;
 using Credits.Domain.Repositories;

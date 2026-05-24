@@ -1,8 +1,8 @@
 ﻿using Credits.Application.Abstractions;
 using Credits.Application.Commands;
-using Credits.Application.Messaging.Abstractions;
-using Credits.Application.Messaging.Messages;
-using Credits.Application.Messaging.Settings;
+using Credits.Domain.Messaging.Abstractions;
+using Credits.Domain.Messaging.Messages;
+using Credits.Domain.Messaging.Settings;
 using Credits.Application.Validators;
 using FluentValidation;
 using Microsoft.Extensions.Logging;

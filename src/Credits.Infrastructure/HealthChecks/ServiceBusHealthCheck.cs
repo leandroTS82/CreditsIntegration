@@ -1,5 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Credits.Application.Messaging.Settings;
+using Credits.Domain.Messaging.Settings;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Options;
 

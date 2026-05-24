@@ -2,7 +2,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Credits.Domain\Credits.Domain.csproj" />
-		<ProjectReference Include="..\Credits.Application\Credits.Application.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

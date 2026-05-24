@@ -1,7 +1,7 @@
 ﻿using Azure.Messaging.ServiceBus;
 using Credits.Application.Abstractions;
 using Credits.Application.Commands;
-using Credits.Application.Messaging.Messages;
+using Credits.Domain.Messaging.Messages;
 using Credits.Worker.Deserializers;
 using Credits.Worker.Processors.Abstractions;
 

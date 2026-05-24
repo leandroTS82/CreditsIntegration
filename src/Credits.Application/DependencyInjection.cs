@@ -1,5 +1,5 @@
 using Credits.Application.Abstractions;
-using Credits.Application.Messaging.Settings;
+using Credits.Domain.Messaging.Settings;
 using Credits.Application.Services;
 using Credits.Application.Validators;
 using FluentValidation;

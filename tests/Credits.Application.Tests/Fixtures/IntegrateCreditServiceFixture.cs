@@ -1,5 +1,5 @@
-﻿using Credits.Application.Messaging.Abstractions;
-using Credits.Application.Messaging.Settings;
+﻿using Credits.Domain.Messaging.Abstractions;
+using Credits.Domain.Messaging.Settings;
 using Credits.Application.Services;
 using Credits.Application.Validators;
 using Microsoft.Extensions.Logging.Abstractions;

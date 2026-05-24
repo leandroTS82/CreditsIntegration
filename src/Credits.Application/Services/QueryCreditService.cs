@@ -1,7 +1,7 @@
 ﻿using Credits.Application.Abstractions;
 using Credits.Application.DTOs.Responses;
-using Credits.Application.Messaging.Abstractions;
-using Credits.Application.Messaging.Notifications;
+using Credits.Domain.Messaging.Abstractions;
+using Credits.Domain.Messaging.Notifications;
 using Credits.Domain.Repositories;
 
 namespace Credits.Application.Services;

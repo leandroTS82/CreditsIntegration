@@ -1,6 +1,6 @@
-﻿using Credits.Application.Messaging.Notifications;
+﻿using Credits.Domain.Messaging.Notifications;
 
-namespace Credits.Application.Messaging.Abstractions;
+namespace Credits.Domain.Messaging.Abstractions;
 
 public interface INotificationPublisher
 {

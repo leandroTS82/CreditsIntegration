@@ -1,5 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Credits.Application.Messaging.Notifications;
+using Credits.Domain.Messaging.Notifications;
 using Credits.Worker.Deserializers;
 using Credits.Worker.Processors.Abstractions;
 

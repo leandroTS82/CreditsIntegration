@@ -1,4 +1,4 @@
-﻿using Credits.Application.Messaging.Notifications;
+﻿using Credits.Domain.Messaging.Notifications;
 using System.Text.Json;
 
 namespace Credits.Worker.Deserializers;

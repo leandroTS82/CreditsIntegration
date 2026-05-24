@@ -1,7 +1,8 @@
 using Azure.Messaging.ServiceBus;
-using Credits.Application.Messaging.Abstractions;
-using Credits.Application.Messaging.Notifications;
-using Credits.Application.Messaging.Settings;
+using Azure.Messaging.ServiceBus.Administration;
+using Credits.Domain.Messaging.Abstractions;
+using Credits.Domain.Messaging.Notifications;
+using Credits.Domain.Messaging.Settings;
 using Credits.Domain.Repositories;
 using Credits.Infrastructure.HealthChecks;
 using Credits.Infrastructure.Messaging;

@@ -1,5 +1,5 @@
 ﻿using Credits.Api.IntegrationTests.Fakes;
-using Credits.Application.Messaging.Abstractions;
+using Credits.Domain.Messaging.Abstractions;
 using Credits.Infrastructure.Persistence;
 using HealthChecks.NpgSql;
 using Microsoft.AspNetCore.Hosting;

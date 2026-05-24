@@ -1,5 +1,5 @@
 ﻿using Azure.Messaging.ServiceBus;
-using Credits.Application.Messaging.Settings;
+using Credits.Domain.Messaging.Settings;
 using Credits.Worker.Processors;
 using Credits.Worker.Processors.Abstractions;
 using Microsoft.Extensions.Options;

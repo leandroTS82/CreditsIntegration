@@ -1,5 +1,5 @@
 ﻿using Credits.Application.Commands;
-using Credits.Application.Messaging.Messages;
+using Credits.Domain.Messaging.Messages;
 using Credits.Application.Tests.FakeData;
 using Credits.Application.Tests.Fixtures;
 using Credits.Domain.Exceptions;

@@ -1,4 +1,4 @@
-﻿namespace Credits.Application.Messaging.Notifications;
+﻿namespace Credits.Domain.Messaging.Notifications;
 
 public sealed record NotificationAuditMessage(
     string EventType,
