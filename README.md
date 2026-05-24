@@ -307,4 +307,11 @@ A separação já existente entre `IntegrateCreditService` (comando) e `QueryCre
 | `ServiceBus__Topics__IntegrateCreditConstituted` | Nome do tópico de integração |
 | `ServiceBus__Topics__NotificationAudit` | Nome do tópico de auditoria |
 | `ServiceBus__Consumer__PollingIntervalMs` | Intervalo de polling em ms (padrão: 500) |
-| `ServiceBus__Consumer__MaxWaitTimeMs` | Tempo máximo de espera por mensagem em ms (padrão: 100) |
+
+## 7. Rascunho inicial / plano de ação
+
+<img width="4624" height="2075" alt="RascunhoInicial_QuadroBranco" src="https://github.com/user-attachments/assets/74573d43-b0f4-4d86-8fdd-da8468361af3" />
+
+
+
+
