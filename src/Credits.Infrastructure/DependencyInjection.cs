@@ -1,5 +1,6 @@
 using Azure.Messaging.ServiceBus;
 using Credits.Application.Messaging.Abstractions;
+using Credits.Application.Messaging.Notifications;
 using Credits.Application.Messaging.Settings;
 using Credits.Domain.Repositories;
 using Credits.Infrastructure.Messaging;
@@ -28,6 +29,7 @@ public static class DependencyInjection
         options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddScoped<ICreditRepository, CreditRepository>();
+        services.AddScoped<INotificationPublisher, NotificationPublisher>();
 
         return services;
     }

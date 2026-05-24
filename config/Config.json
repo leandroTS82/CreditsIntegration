@@ -22,6 +22,24 @@
                 }
               }
             ]
+          },
+          {
+            "Name": "notification-audit-entry",
+            "Properties": {
+              "DefaultMessageTimeToLive": "PT1H",
+              "RequiresDuplicateDetection": false
+            },
+            "Subscriptions": [
+              {
+                "Name": "audit-subscription",
+                "Properties": {
+                  "DefaultMessageTimeToLive": "PT1H",
+                  "LockDuration": "PT1M",
+                  "MaxDeliveryCount": 3,
+                  "RequiresSession": false
+                }
+              }
+            ]
           }
         ]
       }
